@@ -1,15 +1,14 @@
 import ldap
 
-from config import DOMAIN_CONTROLLER
-
+from config import DOMAIN_CONTROLLER, DOMAIN_AUTH_OU, DOMAIN_AUTH_FILTER
 
 class AuthLDAP:
     LDAP_SERVER = DOMAIN_CONTROLLER
     LDAP_PORT = 389
-    LDAP_DN = "OU=Structure,DC=rgs,DC=ru"
+    LDAP_DN = DOMAIN_AUTH_OU
     ldap_obj = None
     ldap_user_attrs = ["SamAccountName"]
-    ldap_filter = '(&(objectClass=user)(sAMAccountName={})(memberOf=CN=rvs-naumen,OU=rvs_tools,OU=Groups,DC=rgs,DC=ru))'
+    ldap_filter = DOMAIN_AUTH_FILTER
     ldap_user_domain = '@rgs.ru'
 
     def __init__(self) -> None:
