@@ -1,6 +1,7 @@
 import ldap
 
-from config import DOMAIN_CONTROLLER, DOMAIN_AUTH_OU, DOMAIN_AUTH_FILTER
+from config import DOMAIN_CONTROLLER, DOMAIN_AUTH_OU, \
+                   DOMAIN_AUTH_FILTER, DOMAIN_USER_DOMAIN
 
 class AuthLDAP:
     LDAP_SERVER = DOMAIN_CONTROLLER
@@ -9,7 +10,7 @@ class AuthLDAP:
     ldap_obj = None
     ldap_user_attrs = ["SamAccountName"]
     ldap_filter = DOMAIN_AUTH_FILTER
-    ldap_user_domain = '@rgs.ru'
+    ldap_user_domain = DOMAIN_USER_DOMAIN
 
     def __init__(self) -> None:
         self.ldap_obj = ldap.initialize(f"ldap://{self.LDAP_SERVER}:{self.LDAP_PORT}")
